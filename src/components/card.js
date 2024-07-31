@@ -1,8 +1,8 @@
 export { addCard, deleteCard, putLike };
-import { cardTemplate } from "../index";
 
 //Функция создания карточек на странице
 function addCard(name, link, deleteCard, openPopupImg, putLike) {
+  const cardTemplate = document.querySelector("#card-template").content;
   const card = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImg = card.querySelector(".card__image");
   const cardName = card.querySelector(".card__title");

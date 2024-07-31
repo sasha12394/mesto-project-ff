@@ -1,19 +1,15 @@
-export { openPopup, closePopup };
+export { openPopup, closePopup, closePopupOverlay, closePopupButton };
 
 //Функция открытия popup
 function openPopup(popupElement) {
   popupElement.classList.add("popup_is-opened");
   document.addEventListener("keydown", closePopupEsc);
-  popupElement.addEventListener("click", closePopupOverlay);
-  popupElement.addEventListener("click", closePopupButton);
 }
 
 //Функция закрытия popup
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", closePopupEsc);
-  popupElement.removeEventListener("click", closePopupOverlay);
-  popupElement.removeEventListener("click", closePopupButton);
 }
 
 //Закрытия popup клавишей Esc
@@ -32,6 +28,7 @@ function closePopupOverlay() {
       closePopup(popupElement);
     }
   });
+  popupElement.removeEventListener("click", closePopupOverlay);
 }
 
 //Закрытия popup крестиком
@@ -40,5 +37,6 @@ function closePopupButton() {
   const closeButton = popupElement.querySelector(".popup__close");
   closeButton.addEventListener("click", () => {
     closePopup(popupElement);
+    popupElement.removeEventListener("click", closePopupButton);
   });
 }

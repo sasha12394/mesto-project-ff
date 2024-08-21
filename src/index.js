@@ -1,24 +1,9 @@
 import { initialCards } from "./components/cards.js";
 import "./pages/index.css";
-import {
-  openPopup,
-  closePopup,
-  closePopupOverlay,
-  closePopupButton,
-} from "./components/modal.js";
+import { openPopup, closePopup, closePopupOverlay, closePopupButton } from "./components/modal.js";
 import { addCard, deleteCard, putLike } from "./components/card.js";
-import {
-  enableValidation,
-  clearValidation,
-  validationConfig,
-} from "./components/validation.js";
-import {
-  getUserInfo,
-  getInitialCards,
-  patchUserInfo,
-  postNewCard,
-  patchAvatar,
-} from "./components/api.js";
+import { enableValidation, clearValidation, validationConfig } from "./components/validation.js";
+import { getUserInfo, getInitialCards, patchUserInfo, postNewCard, patchAvatar } from "./components/api.js";
 // @todo: Темплейт карточки
 const cardTemplate = document.querySelector("#card-template").content;
 const card = cardTemplate.querySelector(".card").cloneNode(true);
@@ -33,9 +18,7 @@ const popupImage = document.querySelector(".popup_type-image");
 const popupAvatar = document.querySelector(".popup_type_avatar");
 const formEdit = document.forms["edit-profile"];
 const nameInput = document.querySelector(".popup__input_type_name");
-const descriptionInput = document.querySelector(
-  ".popup__input_type_description"
-);
+const descriptionInput = document.querySelector(".popup__input_type_description");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const popupImageSrc = document.querySelector(".popup__image");
@@ -184,10 +167,7 @@ Promise.all([getUserInfo(), getInitialCards()])
   .then(([userInfo, data]) => {
     profileTitle.textContent = userInfo.name;
     profileDescription.textContent = userInfo.about;
-    profileAvatar.setAttribute(
-      "style",
-      `background-image: url('${userInfo.avatar}')`
-    );
+    profileAvatar.setAttribute("style",`background-image: url('${userInfo.avatar}')`);
     userId = userInfo._id;
     data.forEach((item) => {
       const newCards = addCard(

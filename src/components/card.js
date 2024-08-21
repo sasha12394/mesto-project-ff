@@ -48,7 +48,7 @@ function addCard(
 function deleteCard(id, card) {
   deleteMyCard(id)
     .then(() => {
-      card.closest(".card").remove();
+      card.remove();
     })
     .catch((err) => {
       console.error(err);

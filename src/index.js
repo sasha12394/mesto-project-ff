@@ -33,11 +33,9 @@ const formElement = document.querySelector(".popup__form");
 const formInput = formElement.querySelector(".popup__input");
 const formError = formElement.querySelector(`.${formInput.id}-error`);
 const profileAvatar = document.querySelector(".profile__image");
-const popupButton = document.querySelectorAll(".popup__button");
-
-popupButton.forEach((item) => {
-  const saveButton = item.textContent;
-});
+const avatarButton = popupAvatar.querySelector(".popup__button");
+const profileButton = popupEdit.querySelector(".popup__button");
+const newPlaceButton = popupNewCard.querySelector(".popup__button");
 
 let userId = "";
 
@@ -76,8 +74,7 @@ function editPersonalSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   const name = nameInput.value;
   const about = descriptionInput.value;
-  saveButton = "Сохранение...";
-
+  profileButton.textContent = "Сохранение...";
   patchUserInfo(name, about)
     .then((data) => {
       profileTitle.textContent = data.name;
@@ -88,7 +85,7 @@ function editPersonalSubmit(evt) {
       console.log(err); // выводим ошибку в консоль
     })
     .finally(() => {
-      saveButton = "Сохранить";
+      profileButton.textContent = "Сохранить";
     });
 }
 
@@ -100,7 +97,7 @@ function addNewPlaceFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   const name = placeNameInput.value;
   const link = linkInput.value;
-  saveButton = "Сохранение...";
+  newPlaceButton.textContent = "Сохранение...";
   postNewCard(name, link)
     .then((data) => {
       const newCard = addCard(
@@ -122,7 +119,7 @@ function addNewPlaceFormSubmit(evt) {
       console.log(err); // выводим ошибку в консоль
     })
     .finally(() => {
-      saveButton = "Сохранить";
+      newPlaceButton.textContent = "Сохранить";
     });
 }
 
@@ -138,7 +135,7 @@ formPlace.addEventListener("submit", addNewPlaceFormSubmit);
 function editAvatarSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   const avatar = avatarInput.value;
-  saveButton = "Сохранение...";
+  avatarButton.textContent = "Сохранение...";
   patchAvatar(avatar)
     .then((data) => {
       profileAvatar.setAttribute(
@@ -152,7 +149,7 @@ function editAvatarSubmit(evt) {
       console.log(err); // выводим ошибку в консоль
     })
     .finally(() => {
-      saveButton = "Сохранить";
+      avatarButton.textContent = "Сохранить";
     });
 }
 
